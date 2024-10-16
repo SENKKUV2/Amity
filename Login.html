@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="CSS/Login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Log In</h1>
+        <p> Enter your email and password to sign in!</p>
+        <form>
+            <input type="text" id="username" name="username" required placeholder="Username"><br><br>
+            <input type="password" id="password" name="password" required placeholder="Password"><br><br>
+            <div class="checkbox">
+                <input type="checkbox" id="remember-me" name="remember-me">
+                <label for="remember-me">Keep me logged in</label>
+                <div class="forgot-password">
+                    <a href="ForgotE.html" >Forgot password?</a>
+                </div>
+            </div>
+            <a href="Dashboard.html">
+                <button>Sign In</button>
+            </a>
+        </form>
+    </div>
+    <div class="trademark">© 2024 Amity Medical Clinic. All Rights Reserved.</div>
+    <script src="JS/Login.js"></script>
+</body>
+</html>

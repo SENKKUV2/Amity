@@ -1,0 +1,92 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #F6F7F9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    padding: 20px;
+    width: 350px;
+}
+
+.trademark {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 13px;
+    color: #A3AED0; 
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: #0064F7;
+    margin-top: 0; 
+    display: flex;
+    justify-content: flex-start;
+    font-size: 35px;
+}
+
+p {
+    font-size: 12px;
+    margin-bottom: 10px; 
+    color: #979797;
+}
+
+input[type="tel"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 2px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 12.5px;
+    background-color: #F6F7F9;
+    font-weight: bold;
+    opacity: 0.7;
+}
+
+input[type="tel"]:focus {
+    border: 2px solid #0064F7; 
+    outline: none;
+}
+
+.button {
+    background-color: #0064F7;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 90%;
+    border-radius: 12.5px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    justify-content: center; /* Centers text horizontally */
+    align-items: center; /* Centers text vertically */
+    outline: none; /* Removes the outline */
+    text-decoration: none; /* Removes underline from the link */
+}
+
+.button:hover {
+    opacity: 0.8;
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;    
+
+}
+
+.signin-link{
+    font-size: 13px;
+    color: #979797;
+}
+
+.signin-link a {
+    text-decoration: none;
+    color: #0064F7;
+    font-weight: bold;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="CSS/Dashboard.css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+    <div class="container"><br> <br>
+        <div class="header">
+            <a class="button" href="ChangeP.html">Change Password</a>
+            <a class="button" href="Login.html"><i class="fas fa-power-off"></i></a>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="button-row">
+                    <a class="button-p" id="updateChart">This day</a>
+                    <input type="date" class="date-selector" id="dateSelector">
+                </div>
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="recent-visits-card">
+                <div class="recent-visits-header">
+                    <div class="header-content">
+                        <h2>Recent Visits</h2>
+                        <a class="small-button" href="MedicalRecords.html" id="viewMoreButton">View More</a>
+                    </div>
+                </div>
+                <br><div class="recent-visits">
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/enqiGB31XFUTTaiHqAvf9UhLfEKXurY5F75VXB18n3y8ynMnA.jpg" alt="Isagani Rain Verano"/>
+                        <span>Isagani Rain Verano</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                    <div class="visit-item">
+                        <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="James Lloyd Isidro"/>
+                        <span>James Lloyd Isidro</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card schedule">
+                <h2>Schedule</h2>
+                <div class="schedule-items">
+                    <div>
+                        <p>
+                            <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="1" class="schedule-img">
+                            <span class="schedule-doctor">Christopher Amit</span>
+                            <span class="schedule-time">8AM-8PM</span><br>
+                            <span class="schedule-role">Doctor</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="schedule-items">
+                    <div>
+                        <p>
+                            <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="2" class="schedule-img">
+                            <span class="schedule-doctor">Anna Smith</span>
+                            <span class="schedule-time">10AM-6PM</span><br>
+                            <span class="schedule-role">Nurse</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="schedule-items">
+                    <div>
+                        <p>
+                            <img src="https://storage.googleapis.com/a1aa/image/199deWfNKVuAMUazW9u8M4KL7pyRDTgPxswlTOqbkYdd5TmTA.jpg" alt="3" class="schedule-img">
+                            <span class="schedule-doctor">Michael Johnson</span>
+                            <span class="schedule-time">9AM-5PM</span><br>
+                            <span class="schedule-role">Surgeon</span>
+                        </p>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </div>
+    <div class="trademark"> 2024 Amity Medical Clinic. All Rights Reserved.</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="JS/Dashboard.js"></script>
+</body>
+</html>

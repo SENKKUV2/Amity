@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Records</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="CSS/MedicalRecords.css"/>
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto p-4">
+        <div class="flex justify-end mb-4">
+            <button class="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-md">
+                <a class="button" href="ChangeP.html">Change Password</a>
+                <a class="button" href="Login.html"><i class="fas fa-power-off"></i></a>
+            </button>
+        </div>
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center mb-4">
+                <div class="flex items-center space-x-2 text-blue-500">
+                    <a href="Dashboard.html"><i class="fas fa-arrow-left"></i></a>
+                    <h1 class="text-xl font-semibold">Medical Records</h1></a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search..." class="border border-blue-500 rounded-full pl-10 pr-4 py-2 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
+                        <i class="fas fa-search text-blue-500 absolute left-3 top-1/2 transform -translate-y-1/2"></i>
+                    </div>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-full flex items-center space-x-2 shadow-md" onclick="toggleCard()">
+                        <span>Add Patient</span>
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <i class="fas fa-th-list text-blue-500 cursor-pointer" onclick="toggleFilterBar()"></i>
+                </div>
+            </div>
+            <table class="w-full text-left">
+                <thead>
+                    <tr class="text-blue-500">
+                        <th class="py-2">Name</th>
+                        <th class="py-2">Authored By</th>
+                        <th class="py-2">Last Updated</th>
+                        <th class="py-2">Last Updated By</th>
+                        <th class="py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-700">
+                    <tr class="border-t">
+                        <td class="py-2">James Lloyd Isidro</td>
+                        <td class="py-2">Dr. Amit</td>
+                        <td class="py-2">05/10/2024</td>
+                        <td class="py-2">Christopher Amit</td>
+                        <td class="py-2 flex space-x-2">
+                            <i class="fas fa-print text-blue-500 cursor-pointer" onclick="togglePrintSuccessCard()"></i>
+                            <i class="fas fa-save text-blue-500 cursor-pointer" onclick="toggleDownloadSuccessCard()"></i>
+                            <i class="fa fa-history text-blue-500 cursor-pointer" onclick="toggleVisitHistoryCard()"></i>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="py-2">Adones Mapula</td>
+                        <td class="py-2">Dr. Amit</td>
+                        <td class="py-2">05/10/2024</td>
+                        <td class="py-2">Christopher Amit</td>
+                        <td class="py-2 flex space-x-2">
+                            <i class="fas fa-print text-blue-500 cursor-pointer" onclick="togglePrintSuccessCard()"></i>
+                            <i class="fas fa-save text-blue-500 cursor-pointer" onclick="toggleDownloadSuccessCard()"></i>
+                            <i class="fa fa-history text-blue-500 cursor-pointer" onclick="toggleVisitHistoryCard()"></i>
+                        </td>
+                    </tr>
+                    <tr class="border-t">
+                        <td class="py-2">Cristian Jeff Ludivese</td>
+                        <td class="py-2">Dr. Amit</td>
+                        <td class="py-2">05/10/2024</td>
+                        <td class="py-2">Christopher Amit</td>
+                        <td class="py-2 flex space-x-2">
+                            <i class="fas fa-print text-blue-500 cursor-pointer" onclick="togglePrintSuccessCard()"></i>
+                            <i class="fas fa-save text-blue-500 cursor-pointer" onclick="toggleDownloadSuccessCard()"></i>
+                            <i class="fa fa-history text-blue-500 cursor-pointer" onclick="toggleVisitHistoryCard()"></i>
+                        </td>
+                    </tr>
+                    <!-- Repeat for other rows -->
+                </tbody>
+            </table>
+        </div>
+        <footer class="mt-4 text-center text-gray-500">
+            © 2024 Amity Medical Clinic. All Rights Reserved.
+        </footer>
+    </div>
+
+    <!-- Floating Card -->
+    <div id="floatingCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600">Add Patient Information</h2>
+                <button class="text-blue-600 text-xl" onclick="toggleCard()"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="event.preventDefault(); showMedicalInfoCard();">
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Name*</label>
+                        <div class="relative mt-1">
+                            <input type="text" value="James Lloyd Isidro" class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-pen text-blue-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Address*</label>
+                        <div class="relative mt-1">
+                            <input type="text" value="Oslob, Cebu City, Philippines" class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-pen text-blue-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Contact Number*</label>
+                        <div class="relative mt-1">
+                            <input type="text" value="+63 123 4567 890" class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                <i class="fas fa-pen text-blue-500"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Gender*</label>
+                        <div class="relative mt-1">
+                            <select class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Marital Status*</label>
+                        <div class="relative mt-1">
+                            <select class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                <option>Single</option>
+                                <option>Married</option>
+                                <option>Divorced</option>
+                                <option>Widowed</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Date Of Birth*</label>
+                        <div class="relative mt-1">
+                            <input type="text" value="01/01/1999" class="block w-full pl-3 pr-10 py-2 border border-blue-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md">Next</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Medical Information Card -->
+    <div id="medicalInfoCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600">Medical Information</h2>
+                <button class="text-blue-600 text-xl" onclick="toggleMedicalInfoCard()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-blue-600 mb-2">Temperature*</label>
+                    <div class="relative">
+                        <input type="text" value="38" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-blue-600 mb-2">Pulse Rate*</label>
+                    <div class="relative">
+                        <input type="text" value="60 bpm" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-blue-600 mb-2">Resp. Rate*</label>
+                    <div class="relative">
+                        <input type="text" value="12" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-blue-600 mb-2">Blood Pressure*</label>
+                    <div class="relative">
+                        <input type="text" value="120/80 mmHg" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-blue-600 mb-2">Weight*</label>
+                    <div class="relative">
+                        <input type="text" value="60" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-chevron-down absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-blue-600 mb-2">CC*</label>
+                    <div class="relative">
+                        <input type="text" value="Blank" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                        <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-6 flex justify-center">
+                <button class="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg" onclick="showFinalInfoCard()">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Final Information Card -->
+    <div id="finalInfoCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-blue-600">Medical Information</h2>
+                <button class="text-blue-600 text-xl" onclick="toggleFinalInfoCard()"><i class="fas fa-times"></i></button>
+            </div>
+            <form>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-blue-600 mb-1">PE*</label>
+                        <div class="relative">
+                            <input type="text" value="38" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-blue-600 mb-1">DX*</label>
+                        <div class="relative">
+                            <input type="text" value="60 bpm" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-blue-600 mb-1">Medications</label>
+                        <div class="relative">
+                            <input type="text" value="12" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-blue-600 mb-1">Laboratory*</label>
+                        <div class="relative">
+                            <input type="text" value="120/80 mmHg" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <i class="fas fa-pen absolute right-3 top-3 text-blue-600"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-2">
+                        <label class="block text-blue-600 mb-1">Upload Document*</label>
+                        <div class="relative">
+                            <input type="file" class="w-full border border-blue-600 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+                            <i class="fas fa-upload absolute right-3 top-3 text-blue-600"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-center">
+                    <button type="submit" class="bg-blue-600 text-white rounded-lg px-6 py-2">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="visitHistoryCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white shadow-2xl rounded-lg p-6 w-3/4 transform transition-all duration-300 hover:scale-105">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-blue-600 text-xl font-semibold">James Lloyd Isidro’s Visit History</h2>
+                <button class="text-blue-600 text-xl" onclick="toggleVisitHistoryCard()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead>
+                        <tr>
+                            <th class="py-2 px-4 text-left text-blue-600">Authored By</th>
+                            <th class="py-2 px-4 text-left text-blue-600">Diagnosis</th>
+                            <th class="py-2 px-4 text-left text-blue-600">Visit</th>
+                            <th class="py-2 px-4 text-left text-blue-600">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="py-2 px-4">Christopher Amit</td>
+                            <td class="py-2 px-4">Diabetic</td>
+                            <td class="py-2 px-4">09/08/2024</td>
+                            <td class="py-2 px-4">
+                                <i class="fas fa-print text-blue-500 cursor-pointer" onclick="togglePrintSuccessCard()"></i>
+                                <i class="fas fa-trash text-blue-500 cursor-pointer" onclick="handleDeleteAction()"></i>
+                            </td>
+                        </tr>
+                        <!-- Repeat for other rows -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="printSuccessCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" onclick="togglePrintSuccessCard()">
+        <div class="bg-white shadow-md rounded-lg p-6 transform transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg">
+            <p class="text-blue-600 text-lg font-medium">You have successfully printed the file.</p>
+        </div>
+    </div>
+
+    <div id="downloadSuccessCard" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center" onclick="toggleDownloadSuccessCard()">
+        <div class="bg-white text-center text-blue-600 text-lg font-medium p-4 rounded-lg shadow-md transform transition-all duration-300 ease-in-out hover:scale-105">
+            You have successfully downloaded the file.
+        </div>
+    </div>
+
+    <div id="filterBar" class="hidden fixed top-1/1 right-4 transform -translate-y-1/2 bg-white border-2 border-blue-500 rounded-lg p-6 w-64 shadow-lg">
+        <div class="mb-6">
+            <h2 class="text-blue-500 font-semibold mb-2">Filter By Date</h2>
+            <div class="flex justify-between">
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">Date From</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">Date To</button>
+            </div>
+        </div>
+        <div class="mb-6">
+            <h2 class="text-blue-500 font-semibold mb-2">Filter by Gender</h2>
+            <div class="flex justify-between">
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">Men</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">Women</button>
+            </div>
+        </div>
+        <div>
+            <h2 class="text-blue-500 font-semibold mb-2">Filter by Year</h2>
+            <div class="grid grid-cols-2 gap-2">
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2019</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2020</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2021</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2022</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2023</button>
+                <button class="border-2 border-blue-500 text-blue-500 rounded-full px-4 py-1">2024</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleCard() {
+            const card = document.getElementById('floatingCard');
+            card.classList.toggle('hidden');
+        }
+
+        function showMedicalInfoCard() {
+            const card = document.getElementById('floatingCard');
+            const medicalInfoCard = document.getElementById('medicalInfoCard');
+            card.classList.add('hidden');
+            medicalInfoCard.classList.remove('hidden');
+        }
+
+        function toggleMedicalInfoCard() {
+            const medicalInfoCard = document.getElementById('medicalInfoCard');
+            medicalInfoCard.classList.toggle('hidden');
+        }
+
+        function showFinalInfoCard() {
+            const medicalInfoCard = document.getElementById('medicalInfoCard');
+            const finalInfoCard = document.getElementById('finalInfoCard');
+            medicalInfoCard.classList.add('hidden');
+            finalInfoCard.classList.remove('hidden');
+        }
+
+        function toggleFinalInfoCard() {
+            const finalInfoCard = document.getElementById('finalInfoCard');
+            finalInfoCard.classList.toggle('hidden');
+        }
+        function toggleVisitHistoryCard() {
+            const visitHistoryCard = document.getElementById('visitHistoryCard');
+            visitHistoryCard.classList.toggle('hidden');
+        }
+
+        function togglePrintSuccessCard() {
+            const printSuccessCard = document.getElementById('printSuccessCard');
+            printSuccessCard.classList.toggle('hidden');
+        }
+
+        function toggleDownloadSuccessCard() {
+            const downloadSuccessCard = document.getElementById('downloadSuccessCard');
+            downloadSuccessCard.classList.toggle('hidden');
+        }
+
+        function toggleFilterBar() {
+            const filterBar = document.getElementById('filterBar');
+            filterBar.classList.toggle('hidden');
+        }
+
+        function confirmDelete() {
+            return confirm("Are you sure you want to delete this record?");
+        }
+
+        // Function to handle delete action
+        function handleDeleteAction() {
+            if (confirmDelete()) {
+                // Proceed with deletion logic
+                // This could involve removing the row from the table
+            }
+        }
+
+        function searchFunction() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('recordsTable');
+            const tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[0];
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                    } else {
+                        tr[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
